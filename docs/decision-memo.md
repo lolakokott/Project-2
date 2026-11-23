@@ -128,4 +128,28 @@ Across the historical-window and QQQ-stress results, the optimizer produced the 
 
 These ranges describe tested outputs. They are not independent allocation limits, and arbitrary combinations within them may fail the mandate.
 
-For a pilot, I would begin with the full-window allocation as a reference portfolio rather than authorizing immediate execution. Before implementing
+For a pilot, I would begin with the full-window allocation as a reference portfolio rather than authorizing immediate execution. Before implementing any trades, I would require the committee to confirm an acceptable allocation-change tolerance, establish how transaction costs will be evaluated, and approve the proposed monitoring conditions. Every candidate allocation must independently satisfy the full mandate.
+
+## 7. Monitoring and Reversal Conditions
+
+During the pilot, I would monitor changes in expected-return assumptions, annualized portfolio volatility, BIL reserve allocation, and differences between optimized portfolios across estimation windows.
+
+I would also monitor DGS10 as an interest-rate indicator, particularly when assessing potential changes in Treasury exposure.
+
+**Continue the pilot** if proposed portfolios remain feasible and allocation changes stay within a tolerance approved by the committee.
+
+**Reassess the allocation** if updated assumptions cause the existing portfolio to fail the 7% return requirement or require substantial reallocation.
+
+**Suspend or reject implementation** if no feasible portfolio satisfies the mandate, important data cannot be validated, or allocation changes exceed the committee's approved tolerance.
+
+The 20-percentage-point allocation changes observed in testing demonstrate why an explicit tolerance is necessary. They are not automatically evidence that the client has approved that degree of reallocation.
+
+## 8. Final Committee Decision
+
+**Recommendation: PILOT, conditional on continued mandate compliance, reliable data, and an agreed allocation-stability tolerance.**
+
+The constrained portfolio achieves lower estimated historical volatility than both baselines while meeting the return and reserve requirements. However, its sensitivity to estimation windows and changed return assumptions does not support unconditional adoption.
+
+**Committee ask:** Approve a monitored evaluation of the strategy using the full-window allocation as a reference portfolio, without authorizing immediate trades. Establish an acceptable allocation-change tolerance, require further source validation and cost analysis before implementation, and review the strategy again if a mandate violation or significant allocation change occurs.
+
+The supporting calculations, testing limitations, AI-use disclosures, and changed-input evidence are documented in `docs/validation-and-ai-use.md`, `docs/locked-changed-input.md`, and `docs/executed-output.md`.
