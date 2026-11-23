@@ -99,7 +99,7 @@ Reoptimization restored feasibility, but the resulting portfolio had higher vola
 
 This supports the PILOT recommendation. The optimizer can respond to changed assumptions, but the original allocation is not sufficiently stable to justify unconditional adoption.
 
-The stress exercise changes expected returns while holding the historical covariance matrix fixed. It does not simulate transaction costs or simultaneous changes in correlations and volatility.
+The stress exercise changes expected returns while holding the historical covariance matrix fixed. The original QQQ changed-input experiment modifies expected returns while holding the historical covariance matrix fixed. The expanded application also supports hypothetical annual portfolio costs and changes to the minimum BIL reserve requirement. However, the cost model uses a simplified annual return deduction rather than transaction-level trading costs, and the application does not simulate simultaneous changes in correlations and volatility.
 
 ## 5. Point-in-Time Data and Model Limitations
 
