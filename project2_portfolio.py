@@ -79,7 +79,7 @@ def validate_correlations(matrix):
     return matrix
 
 
-def mandate_failures(weights, estimated_return):
+def mandate_failures(weights, estimated_return, *, minimum_bil=MINIMUM_BIL, annual_cost=0):
     if len(weights) != len(TICKERS):
         return ["Provide one weight for each of VT, BIL, QQQ, and IEF."]
     if any(not math.isfinite(weight) for weight in weights):
@@ -89,12 +89,13 @@ def mandate_failures(weights, estimated_return):
         failures.append("Each weight must be between 0% and 100%.")
     if not math.isclose(math.fsum(weights), 1, rel_tol=0, abs_tol=TOLERANCE):
         failures.append("Weights must sum to 100%.")
-    if weights[BIL_INDEX] < MINIMUM_BIL:
-        failures.append("BIL allocation is below the 10% minimum.")
+    if weights[BIL_INDEX] < minimum_bil:
+        failures.append(f"BIL allocation is below the {minimum_bil * 100:g}% minimum.")
     if not math.isfinite(estimated_return):
         failures.append("Estimated annual return must be finite.")
-    elif estimated_return < TARGET_RETURN:
-        failures.append("Estimated annual return is below the 7% objective.")
+    elif estimated_return - annual_cost < TARGET_RETURN:
+        return_label = "net annual return" if annual_cost else "annual return"
+        failures.append(f"Estimated {return_label} is below the 7% objective.")
     return failures
 
 
@@ -113,9 +114,11 @@ def estimate_inputs(monthly_returns):
     return returns, covariance
 
 
-def evaluate_portfolio(weights, returns, covariance):
+def evaluate_portfolio(weights, returns, covariance, *, minimum_bil=MINIMUM_BIL, annual_cost=0):
     expected = math.fsum(weight * float(rate) for weight, rate in zip(weights, returns))
-    failures = mandate_failures(weights, expected)
+    failures = mandate_failures(
+        weights, expected, minimum_bil=minimum_bil, annual_cost=annual_cost
+    )
     if len(weights) != len(TICKERS) or any(
         not math.isfinite(weight) or not 0 <= weight <= 1 for weight in weights
     ):
@@ -126,20 +129,23 @@ def evaluate_portfolio(weights, returns, covariance):
         raise ValueError("Portfolio annualized return and volatility must be finite.")
     return {
         "weights": weights,
-        "return": expected,
+        "return": expected,  # Gross return, retained for historical callers.
+        "net_return": expected - annual_cost,
         "volatility": math.sqrt(max(variance, 0.0)),
         "reserve": weights[BIL_INDEX],
         "failures": failures,
     }
 
 
-def find_lowest_risk_mix(returns, covariance):
+def find_lowest_risk_mix(returns, covariance, *, minimum_bil=MINIMUM_BIL, annual_cost=0):
     best = None
     for units in product(range(GRID_UNITS + 1), repeat=len(TICKERS)):
-        if sum(units) != GRID_UNITS:
+        if sum(units) != GRID_UNITS or units[BIL_INDEX] / GRID_UNITS < minimum_bil:
             continue
         weights = tuple(unit / GRID_UNITS for unit in units)
-        candidate = evaluate_portfolio(weights, returns, covariance)
+        candidate = evaluate_portfolio(
+            weights, returns, covariance, minimum_bil=minimum_bil, annual_cost=annual_cost
+        )
         if not candidate["failures"] and (
             best is None or candidate["volatility"] < best["volatility"]
         ):
