@@ -181,7 +181,7 @@ I used AI as a development and analytical support tool, rather than as a substit
 | OpenAI Codex | Assisting with Python implementation, debugging, Streamlit functionality, automated tests, and drafting documentation | Codex assisted with developing the automated tests. I subsequently ran the complete 21-test suite myself from a fresh GitHub clone and confirmed that all tests passed. I also launched Streamlit and reviewed the portfolio results and stress-testing functionality. |
 | AI-assisted documentation | Organizing the investment memo and validation explanations | I reviewed the descriptions against the financial results and made the final decisions regarding the recommendation, limitations, and monitoring conditions. |
 
-**Model/version and interaction dates:**  I used OpenAI ChatGPT version GPT-6 and Codex version0.171.0 throughout Project 2 development in November 2026 only. 
+**Model/version and interaction dates:**  I used OpenAI ChatGPT version GPT-6 and Codex version GPT-6.2-Sol throughout Project 2 development in November 2026 only. 
 
 **Material output check:** AI-assisted code and explanations were evaluated using the portfolio's baseline results and the QQQ changed-input experiment. The full-window original allocation returned an estimated 7.12% with 5.97% volatility. Reducing QQQ's expected return by 2 percentage points reduced the fixed-weight portfolio's estimated return to 6.62%, causing a mandate failure. Reoptimization restored feasibility with a 7.06% estimated return and 6.71% volatility.
 
