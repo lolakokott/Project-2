@@ -8,6 +8,7 @@ import streamlit as st
 from project2_dgs10 import DEFAULT_DECISION_DATE, load_dgs10
 from project2_portfolio import (
     EQUAL_WEIGHTS,
+    MINIMUM_BIL,
     POLICY_WEIGHTS,
     TICKERS,
     estimate_inputs,
@@ -20,7 +21,7 @@ from project2_stress import run_stress
 LOCAL_PRICES = Path(__file__).resolve().with_name("prices.csv")
 
 
-def display_portfolio(label, result):
+def display_portfolio(label, result, *, scenario_minimum_bil_pct=None):
     st.markdown(f"**{label}**")
     if result is None:
         st.warning("Mandate FAIL — no 5% grid allocation meets all mandate requirements.")
@@ -29,13 +30,25 @@ def display_portfolio(label, result):
     st.write(" · ".join(
         f"{ticker} {weight:.0%}" for ticker, weight in zip(TICKERS, result["weights"])
     ))
+    if scenario_minimum_bil_pct is None:
+        returns = f"Estimated annual return **{result['return']:.2%}**"
+    else:
+        returns = (
+            f"Estimated gross annual return **{result['return']:.4%}** · "
+            f"Estimated net annual return **{result['net_return']:.4%}**"
+        )
     st.write(
-        f"Estimated annual return **{result['return']:.2%}** · "
+        f"{returns} · "
         f"Annualized volatility **{result['volatility']:.2%}** · "
         f"BIL reserve **{result['reserve']:.0%}**"
     )
     if result["failures"]:
         st.warning("Mandate FAIL — " + " ".join(result["failures"]))
+    elif scenario_minimum_bil_pct is not None:
+        st.success(
+            "Mandate PASS — Estimated net annual return is at least 7%, BIL is at least "
+            f"{scenario_minimum_bil_pct:g}%, and long-only weights total 100%."
+        )
     else:
         st.success(
             "Mandate PASS — Estimated annual return is at least 7%, BIL is at least "
@@ -81,7 +94,7 @@ def display_largest_change(baseline, comparison, unavailable_message):
         st.write(f"**{largest} percentage points** ({tickers})")
 
 
-def display_stress_window(label, window, overrides):
+def display_stress_window(label, window, overrides, cost_bps, minimum_bil_pct):
     st.subheader(label)
     if window is None:
         st.info("Historical estimates are unavailable for this window.")
@@ -98,7 +111,10 @@ def display_stress_window(label, window, overrides):
         for ticker, historical, stressed in zip(TICKERS, returns, stressed_returns)
     ))
     try:
-        fixed, optimized, infeasible_reason = run_stress(baseline, stressed_returns, covariance)
+        fixed, optimized, infeasible_reason = run_stress(
+            baseline, stressed_returns, covariance,
+            cost_bps=cost_bps, minimum_bil_pct=minimum_bil_pct,
+        )
     except ValueError as error:
         st.error(f"Scenario unavailable. {error}")
         return
@@ -107,13 +123,17 @@ def display_stress_window(label, window, overrides):
     if fixed is None:
         st.info("Fixed-weight scenario unavailable because there is no historical optimized mix.")
     else:
-        display_portfolio("Scenario at original weights", fixed)
+        display_portfolio(
+            "Scenario at original weights", fixed, scenario_minimum_bil_pct=minimum_bil_pct
+        )
 
     if optimized is None:
         st.markdown("**Reoptimized scenario**")
         st.warning(f"INFEASIBLE — {infeasible_reason}")
     else:
-        display_portfolio("Reoptimized scenario", optimized)
+        display_portfolio(
+            "Reoptimized scenario", optimized, scenario_minimum_bil_pct=minimum_bil_pct
+        )
 
     st.markdown("**Largest weight change from baseline to reoptimized scenario**")
     display_largest_change(
@@ -147,21 +167,42 @@ def display_stress(full, recent):
             )
             for ticker, column in zip(TICKERS, st.columns(len(TICKERS)))
         ]
+        cost_column, reserve_column = st.columns(2)
+        cost_bps = cost_column.number_input(
+            "Hypothetical annual portfolio cost (bps)", min_value=0.0, value=0.0, step=1.0,
+            help="100 basis points subtract 1 percentage point from gross annual return.",
+        )
+        minimum_bil_pct = reserve_column.number_input(
+            "Stressed minimum BIL allocation (%)", min_value=0.0, max_value=100.0,
+            value=MINIMUM_BIL * 100, step=1.0,
+            help="On the 5% allocation grid, a 12% minimum requires at least 15% BIL.",
+        )
         submitted = st.form_submit_button("Run hypothetical scenario")
 
     if submitted:
         st.session_state["portfolio_stress_returns"] = overrides
+        st.session_state["portfolio_stress_limits"] = (cost_bps, minimum_bil_pct)
     if "portfolio_stress_returns" not in st.session_state:
         return
 
+    cost_bps, minimum_bil_pct = st.session_state.get(
+        "portfolio_stress_limits", (0.0, MINIMUM_BIL * 100)
+    )
+    st.caption(
+        f"Applied scenario assumptions for both windows · Annual cost {cost_bps:g} bps "
+        f"({cost_bps / 100:g} percentage points) · Minimum BIL {minimum_bil_pct:g}% · "
+        "Net annual return objective 7%"
+    )
     full_column, recent_column = st.columns(2)
     with full_column:
         full_optimized = display_stress_window(
-            "Full window scenario", full, st.session_state["portfolio_stress_returns"]
+            "Full window scenario", full, st.session_state["portfolio_stress_returns"],
+            cost_bps, minimum_bil_pct,
         )
     with recent_column:
         recent_optimized = display_stress_window(
-            "Last 36 months scenario", recent, st.session_state["portfolio_stress_returns"]
+            "Last 36 months scenario", recent, st.session_state["portfolio_stress_returns"],
+            cost_bps, minimum_bil_pct,
         )
     st.subheader("Largest reoptimized weight difference across windows")
     display_largest_change(
