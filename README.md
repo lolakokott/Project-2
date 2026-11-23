@@ -67,3 +67,16 @@ python -m unittest discover -p "test_project2_*.py"
 ```
 
 The portfolio tests cover CSV validation, correlations, mandate checks, and grid optimization. The stress tests cover fixed weights, reoptimization, infeasibility, and the Streamlit form. The DGS10 tests cover vintage selection, date filtering, missing observations, and the app's response to a failed download. They mock the ALFRED request.
+
+## Investment Decision and Supporting Evidence
+
+**Committee recommendation: PILOT, not immediate adoption.**
+
+The optimized portfolio meets the mandate under historical estimates, but allocation changes across estimation windows and return assumptions support a monitored pilot rather than unconditional adoption.
+
+- [Executed application output](docs/executed-output.md)
+- [Investment committee decision memo](docs/decision-memo.md)
+- [Validation and AI-use documentation](docs/validation-and-ai-use.md)
+- [Locked Changed-Input Record](docs/locked-changed-input.md)
+
+The decision is conditional on continued mandate compliance, reliable data, and an agreed tolerance for allocation changes. The project is an educational demonstration, not investment advice.
