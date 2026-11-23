@@ -80,7 +80,7 @@ Automated tests cover:
 - Fixed-weight stress evaluation and reoptimization.
 - Point-in-time filtering and unavailable DGS10 observations.
 
-Codex reported that all 15 automated tests passed after the stress-testing upgrade. The baseline portfolio outputs were also observed in the running Streamlit application.
+The initial application passed 15 automated tests during development. Following the addition of cost and liquidity constraint stress testing, the expanded test suite contained 21 tests. On November 23, 2026, I independently executed `python -m unittest discover -v` from a fresh clone of the GitHub repository. All 21 tests passed in 1.264 seconds. I also launched the application and verified that its portfolio comparisons and updated stress-testing controls were available. The baseline portfolio outputs were also observed in the running Streamlit application.
 
 The optimizer performs an exhaustive search over 5-percentage-point weight combinations, not continuous portfolio optimization. It cannot establish the globally optimal allocation across all possible real-valued weights.
 
@@ -178,7 +178,7 @@ I used AI as a development and analytical support tool, rather than as a substit
 | AI tool | Material use | Verification and disposition |
 |---|---|---|
 | OpenAI ChatGPT | Interpreting and organizing assignment requirements, discussing portfolio methodology, and reviewing financial reasoning | I compared recommendations with the assignment requirements and my observed application results. I retained the PILOT recommendation because the tested allocations showed sensitivity to assumptions. |
-| OpenAI Codex | Assisting with Python implementation, debugging, Streamlit functionality, automated tests, and drafting documentation | Codex reported 15 passing tests. I separately ran the Streamlit application and reviewed the baseline portfolio results and changed-input scenario. |
+| OpenAI Codex | Assisting with Python implementation, debugging, Streamlit functionality, automated tests, and drafting documentation | Codex assisted with developing the automated tests. I subsequently ran the complete 21-test suite myself from a fresh GitHub clone and confirmed that all tests passed. I also launched Streamlit and reviewed the portfolio results and stress-testing functionality. |
 | AI-assisted documentation | Organizing the investment memo and validation explanations | I reviewed the descriptions against the financial results and made the final decisions regarding the recommendation, limitations, and monitoring conditions. |
 
 **Model/version and interaction dates:**  I used OpenAI ChatGPT version GPT-6 and Codex version0.171.0 throughout Project 2 development in November 2026 only. 
