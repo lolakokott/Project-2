@@ -145,6 +145,24 @@ My Locked Changed-Input prediction was written before the experiment and committ
 
 AI-generated outputs were not treated as sufficient evidence of model accuracy on their own. I distinguished tests reported by Codex from behavior I observed in the running application.
 
+### Material AI Uses and Verification
+
+I used AI as a development and analytical support tool, rather than as a substitute for my investment judgment.
+
+| AI tool | Material use | Verification and disposition |
+|---|---|---|
+| OpenAI ChatGPT | Interpreting and organizing assignment requirements, discussing portfolio methodology, and reviewing financial reasoning | I compared recommendations with the assignment requirements and my observed application results. I retained the PILOT recommendation because the tested allocations showed sensitivity to assumptions. |
+| OpenAI Codex | Assisting with Python implementation, debugging, Streamlit functionality, automated tests, and drafting documentation | Codex reported 15 passing tests. I separately ran the Streamlit application and reviewed the baseline portfolio results and changed-input scenario. |
+| AI-assisted documentation | Organizing the investment memo and validation explanations | I reviewed the descriptions against the financial results and made the final decisions regarding the recommendation, limitations, and monitoring conditions. |
+
+**Model/version and interaction dates:**  I used OpenAI ChatGPT version GPT-6 and Codex version0.171.0 throughout Project 2 development in November 2026 only. 
+
+**Material output check:** AI-assisted code and explanations were evaluated using the portfolio's baseline results and the QQQ changed-input experiment. The full-window original allocation returned an estimated 7.12% with 5.97% volatility. Reducing QQQ's expected return by 2 percentage points reduced the fixed-weight portfolio's estimated return to 6.62%, causing a mandate failure. Reoptimization restored feasibility with a 7.06% estimated return and 6.71% volatility.
+
+These observed results supported my decision to recommend a monitored PILOT rather than immediate adoption.
+
+**Independent judgment:** I was responsible for defining the mandate, reviewing the portfolio results, assessing the model's limitations,  determining the investment recommendation, and reviewing documentation. AI assistance informed the development and review process but did not replace my responsibility for those decisions.
+
 ## 10. Investment Judgment and Monitoring
 
 **Recommendation: PILOT, not immediate adoption.**
