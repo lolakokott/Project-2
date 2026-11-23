@@ -2,7 +2,9 @@
 
 **FIN43900 | Investment Management Application**
 
-**Educational demonstration only — not investment advice.**
+**AI announcement:** I used Codex to assist with developing the application, debugging code, validating model outputs, and preparing documentation. I reviewed the financial results and am responsible for the analysis and investment recommendation.
+
+**Educational disclaimer:** This application and analysis are for educational purposes only and do not constitute investment advice.
 
 ## 1. Executive Recommendation
 
