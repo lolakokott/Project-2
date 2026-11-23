@@ -25,7 +25,17 @@ The bundled `prices.csv` contains 60 monthly price observations from October 202
 
 The dataset has four ETF columns and no missing values. The application uses monthly percentage returns to calculate annualized historical return and volatility estimates and the correlation matrix.
 
-The project documents Yahoo Finance adjusted closing prices as the source. The exact historical download date and independent reconciliation of every price observation have not been fully established.
+### ETF Price Data Provenance
+
+The ETF price dataset was created using `get_prices.py`, which retrieves historical daily adjusted closing prices for VT, BIL, QQQ, and IEF through the `yfinance` Python library using Yahoo Finance data. The script selects the last available daily observation for each month and saves the resulting monthly panel to `prices.csv`.
+
+Local file timestamps and development records establish that the CSV existed on October 22, 2026, supporting that date as the likely download date. The exact original retrieval time could not be independently confirmed.
+
+The dataset contains 60 monthly observations covering October 2021 through September 2026. Dates are labeled using calendar month-ends, which may differ from actual trading dates when a month ends on a weekend or holiday.
+
+The original data-provider response was not preserved, so individual price observations have not been independently reconciled against an archived Yahoo Finance download. However, the available generation script and development records support the documented source, and no evidence of simulated or estimated price observations was identified.
+
+This provenance limitation is disclosed rather than treating the historical data as independently authenticated.
 
 The application also monitors DGS10 using FRED and ALFRED.
 
