@@ -48,15 +48,29 @@ python -m streamlit run project2_app.py
 
 The app uses the bundled `prices.csv` by default. It contains 60 monthly adjusted-price rows from October 2021 through September 2026, producing 59 monthly returns. The sidebar also accepts a CSV with a `Date` column in `YYYY-MM-DD` format and columns for `VT`, `BIL`, `QQQ`, and `IEF`. Use finite, positive prices and one row per consecutive month in chronological order. The app requires at least three price rows to estimate risk and 37 rows for the 36-month comparison.
 
+The bundled price dataset was generated using get_prices.py, which downloads Yahoo Finance adjusted closing prices through yfinance and selects the last available daily observation for each calendar month.
+
 ETF estimates use the dates present in the bundled or uploaded CSV. The row dates identify price observations, and the CSV provides no record of when those prices first became available. Changing the DGS10 decision date leaves the ETF estimation windows unchanged.
 
 The DGS10 panel requests the ALFRED vintage for the selected decision date, which defaults to September 30, 2026. It displays the latest measured yield on or before that date within the requested vintage, along with the observation date. The data card identifies the Federal Reserve Board's H.15 series, its units of percent per annum without seasonal adjustment, and its business-day frequency. Observations are generally published the following business day. The archive has daily resolution, release timing can vary, and later vintages may incorporate revisions.
 
 The DGS10 panel requires internet access to ALFRED and uses a public CSV endpoint without an API key. The app reports an unavailable vintage or failed download and continues to show ETF results when valid prices are available. DGS10 provides interest-rate context for a hypothetical IEF scenario. ETF estimates and weights are calculated independently of the yield. [FRED DGS10 series](https://fred.stlouisfed.org/series/DGS10) · [ALFRED DGS10 archive](https://alfred.stlouisfed.org/series?seid=DGS10)
 
-## Return-only stress scenarios
+## Portfolio Stress Testing
 
-Enter hypothetical annual return assumptions in percent for any ETF. Overrides apply to both windows, and blank fields use each window's historical estimate. The app evaluates the scenario at the original optimized weights when available and reruns the same constrained 5% grid under the new return assumptions. Each window retains its historical covariance, so fixed-weight volatility stays the same and reoptimized volatility can change through the new weights. DGS10 can inform an IEF assumption you enter yourself. The scenario is a sensitivity analysis of expected returns.
+The application supports sensitivity testing across expected returns, estimation windows, hypothetical annual portfolio costs, and minimum BIL reserve requirements.
+
+Users can override individual ETF annual return assumptions, enter an annual portfolio cost in basis points, and adjust the minimum required BIL allocation. The application evaluates the original optimized portfolio under the stressed assumptions and then searches for a new feasible allocation using the existing 5% weight grid.
+
+Annual costs are deducted from gross expected returns, and mandate compliance is assessed using net expected returns. The optimizer enforces both the 7% net return objective and the stressed BIL reserve requirement.
+
+The application evaluates the full historical window and the last 36 months separately. If no allocation satisfies the stressed mandate, it reports INFEASIBLE rather than presenting a noncompliant portfolio as acceptable.
+
+Return-only changes preserve the historical covariance matrix within each window. Consequently, fixed-weight volatility remains unchanged under return-only stress, although reoptimized volatility can change when portfolio weights change.
+
+The DGS10 point-in-time signal provides interest-rate context but is not directly used to forecast ETF returns.
+
+These stress scenarios are hypothetical sensitivity tests rather than predictions of future market performance.
 
 ## Tests
 
