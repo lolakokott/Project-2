@@ -1,8 +1,8 @@
 # FIN43900 Project 2
 
-**AI use disclosure.** This project was developed with AI assistance.
+**AI use disclosure.** I used OpenAI ChatGPT and Codex to support application development, debugging, financial validation, and documentation. I reviewed the financial outputs, evaluated the model's limitations, and made the final investment recommendation independently.
 
-**Educational use only.** This course application is a learning demonstration and does not provide investment advice.
+**Educational use only.** This application and its analysis were developed for educational purposes and do not constitute investment advice.
 
 ## Portfolio mandate
 
