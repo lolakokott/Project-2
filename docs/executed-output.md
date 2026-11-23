@@ -66,7 +66,38 @@ The DGS10 signal is used for monitoring, not as a direct return forecast. ETF da
 
 This scenario changes expected returns only. The historical covariance matrix remains fixed.
 
-## 6. Investment Decision
+## 6. Additional Stress Tests — Costs and Liquidity
+
+### Annual Cost Stress: 25 Basis Points
+
+This scenario applies a hypothetical annual cost of 25 basis points (0.25 percentage points) and retains the original 10% minimum BIL requirement. All ETF expected-return assumptions remain unchanged.
+
+| Metric | Full-window original weights | Full-window reoptimized | 36-month original weights | 36-month reoptimized |
+|---|---:|---:|---:|---:|
+| VT | 5% | 0% | 10% | 5% |
+| BIL | 70% | 70% | 85% | 85% |
+| QQQ | 25% | 30% | 5% | 10% |
+| IEF | 0% | 0% | 0% | 0% |
+| Gross annual return | 7.1226% | 7.3721% | 7.0554% | 7.3626% |
+| Net annual return | 6.8726% | 7.1221% | 6.8054% | 7.1126% |
+| Annualized volatility | 5.97% | 6.35% | 1.99% | 2.27% |
+| Mandate | FAIL | PASS | FAIL | PASS |
+
+The original allocations failed the 7% net return objective after costs. Reoptimization found feasible portfolios in both historical windows, although estimated volatility increased.
+
+### Minimum BIL Reserve Stress: 80%
+
+This scenario increases the minimum BIL requirement from 10% to 80%, with no additional annual cost.
+
+**Full historical window:** The original 70% BIL allocation failed the stressed reserve requirement. Reoptimization returned INFEASIBLE because the highest achievable estimated annual return with at least 80% BIL was 6.1339%, below the 7% objective.
+
+**Last 36 months:** The original allocation of VT 10%, BIL 85%, QQQ 5%, and IEF 0% continued to meet the mandate. Estimated annual return was 7.0554%, with 1.99% annualized volatility.
+
+These scenarios demonstrate that both cost assumptions and liquidity constraints can materially affect mandate feasibility.
+
+**Process stopping condition:** Do not approve a proposed allocation when no feasible portfolio meets the stressed mandate. Reassess the assumptions or seek a revised mandate from the committee rather than presenting a noncompliant allocation as acceptable.
+
+## 7. Investment Decision
 
 **PILOT, not immediate adoption.**
 
@@ -76,7 +107,7 @@ The pilot is conditional on source validation, continued mandate compliance, an 
 
 **Reversal condition:** Suspend or reject the proposed allocation if no feasible portfolio meets the mandate or if allocation instability exceeds the client's approved tolerance.
 
-## 7. Reproducibility
+## 8. Reproducibility
 
 Run the application from the repository root:
 
