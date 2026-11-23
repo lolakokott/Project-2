@@ -25,3 +25,37 @@ The largest allocation difference was 20 percentage points in QQQ. The DGS10 mon
 ## Limitations
 
 This was a self-conducted simulation, not a cold run independently conducted by a classmate. The output was reviewed with AI assistance. Independent reproducibility remains to be confirmed.
+
+## Final Fresh-Clone Reproducibility Check — November 23, 2026
+
+**Tester:** Project author (self-conducted test)
+
+**Source:** Fresh clone of the latest GitHub repository into `Project-2-Final-Test`.
+
+**Environment:** macOS, Python virtual environment created from scratch.
+
+**Procedure:**
+
+1. Cloned the repository from GitHub.
+2. Created and activated a new Python virtual environment.
+3. Installed dependencies using `python -m pip install -r requirements.txt`.
+4. Ran `python -m unittest discover -v`.
+5. Launched the application using `python -m streamlit run project2_app.py`.
+
+**Observed results:**
+
+- Dependency installation completed without a reported error.
+- All 21 automated tests passed in 1.264 seconds.
+- A nonfatal Streamlit `ScriptRunContext` warning appeared during automated testing.
+- The Streamlit application launched successfully.
+- Both historical portfolio comparison sections appeared.
+- The annual portfolio cost and minimum BIL allocation controls were available.
+- The DGS10 data card appeared or displayed its expected availability handling.
+
+**First blocking failure:** None observed.
+
+**Resolution:** No blocking correction was necessary.
+
+**Outcome:** PASS — The application was reproducible from a fresh clone in the author's environment.
+
+**Limitation:** This was a self-conducted clean-clone test, not an independent partner cold run. It does not establish that every operating system or Python environment will behave identically.
