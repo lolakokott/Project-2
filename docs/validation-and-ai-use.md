@@ -125,6 +125,22 @@ The model does not currently establish:
 
 The application must identify infeasible scenarios instead of presenting a compliant allocation that does not exist.
 
+### Additional Cost and Liquidity Stress Validation
+
+I expanded the application to test changes in hypothetical annual portfolio costs and minimum BIL reserve requirements, in addition to expected-return assumptions and estimation windows. The optimizer applies costs to net expected returns and enforces the stressed liquidity constraint when searching for feasible allocations.
+
+**Cost stress:** I applied a hypothetical annual portfolio cost of 25 basis points while retaining the original 10% BIL minimum. In the full historical window, the original allocation's estimated net annual return decreased from 7.1226% to 6.8726%, causing the mandate to fail. Reoptimization produced an allocation of VT 0%, BIL 70%, QQQ 30%, and IEF 0%, with a net expected return of 7.1221% and annualized volatility of 6.35%. The reoptimized portfolio passed the mandate.
+
+In the last-36-month window, the original allocation's estimated net return decreased to 6.8054%, also failing the mandate. Reoptimization restored compliance with a 7.1126% net return and 2.27% annualized volatility.
+
+**Liquidity constraint stress:** I increased the minimum required BIL allocation from 10% to 80%, with no additional portfolio cost. In the full historical window, the application correctly identified the problem as infeasible: the highest achievable estimated return with at least 80% BIL was 6.1339%, below the 7% objective. The application did not present an infeasible portfolio as compliant.
+
+In the last-36-month window, the original allocation of VT 10%, BIL 85%, QQQ 5%, and IEF 0% remained feasible, with a 7.0554% estimated annual return and 1.99% volatility.
+
+**Validation outcome:** The original QQQ changed-input experiment remained consistent after the application changes. Codex reported 21 passing automated tests, and I separately observed the cost and liquidity stress results in the running Streamlit application.
+
+These tests strengthen my PILOT recommendation. They demonstrate that modest costs can cause the original portfolio to fail its return requirement and that a stricter liquidity constraint can prevent the optimizer from finding any feasible allocation.
+
 ## 8. Reproducibility and Independent Challenge
 
 The repository includes application modules, historical data, dependency requirements, automated tests, and launch instructions.
