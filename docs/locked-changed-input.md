@@ -70,4 +70,12 @@ The scenario changes expected returns but holds each window's historical covaria
 
 The results are backward-looking sensitivity estimates, not forecasts.
 
-**AI-use disclosure:** The prediction was formed by the student independently with AI feedback on the reasoning. The scenario was then run in the application, and the observed results were reviewed.
+## GitHub Audit Trail
+
+**Original prediction commit:** [https://github.com/lolakokott/Project-2/commit/c2aab0c8c022c2a7ce957119182e1f8f20776e6f](https://github.com/lolakokott/Project-2/commit/c2aab0c8c022c2a7ce957119182e1f8f20776e6f)
+
+**Prediction commit date/time:** 11/23/26 2:20 PM EST
+
+**Sequence:** The prediction was committed to GitHub before the QQQ stress scenario was executed. The actual results were added in a subsequent commit.
+
+**AI-use disclosure:** The prediction was formed by the student independently with AI feedback on the reasoning. The scenario was run in the application, and the observed results were reviewed.
