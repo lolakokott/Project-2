@@ -14,11 +14,11 @@
 | Investment committee decision memo | [Decision Memo](https://github.com/lolakokott/Project-2/blob/main/docs/decision-memo.md) |
 | Validation and AI-use record | [Validation and AI Use](https://github.com/lolakokott/Project-2/blob/main/docs/validation-and-ai-use.md) |
 | Video 1 — Development and AI Verification | [YouTube Video 1](https://youtu.be/QcGDwSwNPZ0) |
-| Video 1 corrected transcript | [transcript-video-1.txt](https://github.com/lolakokott/Project-2/blob/main/docs/transcript-video-1.txt) |
+| Video 1 corrected transcript | [transcript-video-1.txt](https://github.com/lolakokott/Project-2/blob/main/docs/video-transcript-1.txt) |
 | Video 2 — Technical Code Walkthrough | [YouTube Video 2](https://youtu.be/W39M4rNAK70) |
-| Video 2 corrected transcript | [transcript-video-2.txt](https://github.com/lolakokott/Project-2/blob/main/docs/transcript-video-2.txt) |
+| Video 2 corrected transcript | [transcript-video-2.txt](https://github.com/lolakokott/Project-2/blob/main/docs/video-transcript-2.txt) |
 | Video 3 — Investment Committee Presentation | [YouTube Video 3](https://youtu.be/-fY8TeyqOsg) |
-| Video 3 corrected transcript | [transcript-video-3.txt](https://github.com/lolakokott/Project-2/blob/main/docs/transcript-video-3.txt) |
+| Video 3 corrected transcript | [transcript-video-3.txt](https://github.com/lolakokott/Project-2/blob/main/docs/video-transcript-3.txt) |
 | Optional deployed application | Not applicable; reproducible from GitHub |
 
 ## 2. Additional Supporting Evidence
