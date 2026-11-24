@@ -1,1 +1,86 @@
 
+Transcript 
+
+00:00:00 
+
+Hi, my name is Lola Kokott. 
+
+00:00:02 
+
+This is my project 2 final video for my AI and finance class. 
+
+00:00:08 
+
+I use Python and Streamlit to create this application and I use Codex and ChatGPT with the coding, debugging and testing aspects. 
+
+00:00:16 
+
+This is strictly for educational purposes and not investment advice. 
+
+00:00:20 
+
+As I mentioned previously, my recommendation is to pilot the strategy rather than immediately adopting it and I'm about to tell you why. 
+
+00:00:28 
+
+So I used four EFTs, as you can see, and then I set two main requirements. 
+
+00:00:33 
+
+The first one being a minimum 7% estimated annual return at at least 10% in BIL, the treasury for liquidity. 
+
+00:00:42 
+
+The app compares 2 baseline portfolios, a full window in the last 36 months against my optimized portfolio, which meets both requirements with lower estimated volatility. 
+
+00:00:52 
+
+So I'm going to scroll down here and we're going to do a stress test. 
+
+00:00:55 
+
+So as you can see here, I changed Invesco's allocation and we're going to run the hypothetical scenario. 
+
+00:01:01 
+
+And this is basically the same as what we had before. 
+
+00:01:06 
+
+So when we run the scenario, as you can see, the original portfolio no longer meets the return requirement. 
+
+00:01:13 
+
+Re-optimization essentially fixes that but increases risk and changes the allocation. 
+
+00:01:18 
+
+which tells me that the recommendation is sensitive to assumptions. 
+
+00:01:22 
+
+So now we're going to go back and clear this and we're going to change the stress minimum BIL allocation to 80% and run this scenario. 
+
+00:01:34 
+
+So here in this case, the full window portfolio becomes completely infeasible. 
+
+00:01:38 
+
+The optimizer can't meet both the liquidity and return requirements, so it just stops instead of recommending an allocation that won't work. 
+
+00:01:46 
+
+So with these results, I recommend a monitored pilot with the original allocation serving as a reference rather than an immediate investment. 
+
+00:01:55 
+
+And before implementing it, I would want further data validation, cost analysis, and an agreed limit on how much allocations can change from an investor. 
+
+00:02:03 
+
+And I'd monitor mandate compliance and allocation stability and reconsider the strategy if this becomes acceptable. 
+
+00:02:10 
+
+So I would ask the committee to approve further testing and not actual trades here. 
