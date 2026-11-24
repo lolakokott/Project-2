@@ -1,1 +1,130 @@
+Transcript 
+
+00:00:00 
+
+Hi everyone, this is Lola Kokott and this is video two of my AI and Finance Project 2 walkthrough. 
+
+00:00:07 
+
+For this video, I want to show you how I organized my application and how I made sure that it was working correctly in VS Code. 
+
+00:00:14 
+
+I used Python and Streamlit to create my application and then I used ChatGPT and Codex to help with the coding, troubleshooting, testing and also to create my documentation. 
+
+00:00:25 
+
+Also A disclaimer that this project is for educational purposes and should not be used as investment advice. 
+
+00:00:31 
+
+So I built this application in Python using Streamlit. 
+
+00:00:35 
+
+And this is the main file that runs it right here. 
+
+00:00:40 
+
+This is my project 2 app.py. 
+
+00:00:43 
+
+And this made it easier to work on different parts of the application to check and make sure they were working correctly. 
+
+00:00:48 
+
+So I have this separated into multiple sections as you can see on the side. 
+
+00:00:53 
+
+Let's look at project 2 portfolio. 
+
+00:00:56 
+
+The main calculations of my application happen in this file. 
+
+00:01:01 
+
+So what this does is app takes historical prices for the four EFTs that I've chosen and showed in the previous video and uses them to estimate return and risk. 
+
+00:01:10 
+
+And then from there, it looks at different combinations of those investments to find a portfolio that meets my requirements with the lowest volatility possible. 
+
+00:01:18 
+
+So I set a minimum return of 7% and a requirement of at least 10% in treasury for liquidity and I didn't allow any negative allocations as well. 
+
+00:01:29 
+
+I included two benchmark portfolios which I mentioned in the last video so I could see how the recommended allocation compared to the simpler alternatives. 
+
+00:01:38 
+
+And one thing I specifically wanted in the application was 
+
+00:01:42 
+
+for it to handle what happens when assumptions change. 
+
+00:01:45 
+
+And that's where the stress testing comes in. 
+
+00:01:48 
+
+I can change expected returns, costs, liquidity requirements, things like that, to see if the original portfolio still works. 
+
+00:01:56 
+
+If it works, it will generate A portfolio that fits within those requirements. 
+
+00:02:00 
+
+And if it does, then it will tell the user that it is infeasible. 
+
+00:02:06 
+
+I also added a historical treasury yield signal for additional context, but it doesn't directly determine the exact portfolio allocations. 
+
+00:02:16 
+
+So here, as you can see, I ran the test and I wanted to make sure that these results were reliable. 
+
+00:02:24 
+
+And if you can see this at the bottom, it says ran 21 tests. 
+
+00:02:28 
+
+Okay, so I tested different scenarios, including changing the assumptions and making the requirements stricter. 
+
+00:02:34 
+
+I downloaded a fresh copy of my GitHub and ran it separately to make sure that everyone else could launch it using the instructions I provided. 
+
+00:02:40 
+
+And all 21 of the tests clearly passed. 
+
+00:02:43 
+
+So the main limitation that the model has is that it uses historical data. 
+
+00:02:48 
+
+So the results can change depending on assumptions. 
+
+00:02:51 
+
+So I wouldn't treat it as a guarantee for the future. 
+
+00:02:56 
+
+And then overall, my goal here was to make an application that was easy to use, made clear when the allocation did or didn't meet the investment requirements. 
+
+00:03:04 
+
+And the testing helped me make sure that these results were consistent and that the application could realize when a particular allocation was not feasible. 
 
