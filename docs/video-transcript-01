@@ -1,1 +1,129 @@
+Transcript 
 
+00:00:01 
+
+Hi, my name is Lola Cocot and this is my project 2 for AI and finance. 
+
+00:00:06 
+
+For my project, I developed an investment management application using Python and VS Code and Streamlit. 
+
+00:00:12 
+
+Then just as an AI disclosure, I used ChatGPT and Codex to help me with some of the coding, debugging, making sure that my analysis made sense and then some of the documentation as well. 
+
+00:00:26 
+
+Just so the financial analysis in this project is strictly for educational purposes and it is not investment advice. 
+
+00:00:33 
+
+So here is my application. 
+
+00:00:36 
+
+And basically what I wanted to do was take a set of investment requirements and find a portfolio that met them with the lowest possible risk. 
+
+00:00:43 
+
+So I picked 4 EFTs pretty randomly and compared the optimized portfolio against an equal weight portfolio and also a 60-40 portfolio. 
+
+00:00:53 
+
+Also, I was mostly concerned with making sure that the optimizer worked and that the portfolio recommended made sense compared to benchmarks. 
+
+00:01:01 
+
+So here we have the full historical window versus the last 36 month window. 
+
+00:01:07 
+
+And as I started testing the application, I realized that meeting necessarily the investment requirements didn't mean the portfolio was a good recommendation. 
+
+00:01:15 
+
+So 
+
+00:01:17 
+
+When I compared, for example, a full historical window against the last 36 months, one of the allocations changed pretty significantly. 
+
+00:01:24 
+
+While both portfolios met the requirements, it raised the question of whether the optimization was pretty dependable. 
+
+00:01:32 
+
+And because of this, I expanded the application to test different return assumptions, cost, liquidity requirements, which are all down here. 
+
+00:01:40 
+
+to really test if it was not relying on just the original optimization results. 
+
+00:01:48 
+
+And here is my validation in AI use. 
+
+00:01:51 
+
+And basically what this does is this is telling you that I didn't want to just rely strictly on what the AI was telling me, and I wanted to make sure that the application was working correctly. 
+
+00:02:00 
+
+So an example is when 
+
+00:02:03 
+
+Codex updated my stress testing code. 
+
+00:02:05 
+
+It reported that its test pass, but I noticed one of the tests used a different return assumption for one of the EFTs than the one I previously documented. 
+
+00:02:14 
+
+So I had to go back into Streamlit, run my original scenario and make sure that the results still match there. 
+
+00:02:19 
+
+And then I also made sure to go back in and test the application from a fresh GitHub download and run the automated test myself. 
+
+00:02:26 
+
+And that definitely gave me a lot more confidence that the results I were using was coming from the application and weren't just based on what Codex reported. 
+
+00:02:35 
+
+So here I have my decision memo. 
+
+00:02:37 
+
+And based on those results, as you can see down here, my final decision was to pilot. 
+
+00:02:47 
+
+The application successfully identifies portfolio results 
+
+00:02:53 
+
+that the portfolio meets the investment requirements. 
+
+00:02:56 
+
+But in testing, there are ways that relatively small changes in assumptions could affect whether the original allocation still works. 
+
+00:03:04 
+
+So I wouldn't necessarily recommend implementing A portfolio just because it passes the mandate once. 
+
+00:03:11 
+
+I would want to know how sensitive it is to changes and how much 
+
+00:03:15 
+
+An investor would be willing to accept those changes and that's ultimately why I chose a pilot. 
+
+00:03:20 
+
+I do think that the application is very useful, but I would want to continue testing and monitoring it before recommending an actual implementation. 
